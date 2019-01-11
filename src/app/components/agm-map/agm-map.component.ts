@@ -55,7 +55,6 @@ export class AgmMapComponent implements OnInit {
          this.markers.push(this.location);
        }
 
-      console.log(this.markers);
     });
   }
 
