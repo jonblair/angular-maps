@@ -4,7 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
 import { AgmMapComponent } from './components/agm-map/agm-map.component';
-
+import { GoogleGeolocationService } from './services/google-geolocation.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,11 +15,12 @@ import { AgmMapComponent } from './components/agm-map/agm-map.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD7p8ryR4JlJNToS9d0GoKL9YlLpVlj8Yw'
     })
   ],
-  providers: [],
+  providers: [GoogleGeolocationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
