@@ -53,7 +53,7 @@ export class AgmMapComponent implements OnInit {
                         longitude: lng}];
       } else {
          this.markers.push(this.location);
-       }
+      }
 
     });
   }
