@@ -1,3 +1,11 @@
 <agm-map [latitude]="lat" [longitude]="lng" [fullscreenControl]="true" (mapClick)="placeMarker($event)">
-  <agm-marker *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude"></agm-marker>
+  <agm-marker *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude">
+    <agm-snazzy-info-window [maxWidth]="500" [latitude]="marker.latitude" [longitude]="marker.longitude" [closeWhenOthersOpen]="true">
+      <ng-template>
+        <span>Latitude: {{marker.latitude}}</span><br>
+        <span>Longitude: {{marker.longitude}}</span><br>
+        <span></span>
+      </ng-template>
+    </agm-snazzy-info-window>
+  </agm-marker>
 </agm-map>

@@ -6,6 +6,7 @@ import { AgmCoreModule } from '@agm/core';
 import { AgmMapComponent } from './components/agm-map/agm-map.component';
 import { GoogleGeolocationService } from './services/google-geolocation.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD7p8ryR4JlJNToS9d0GoKL9YlLpVlj8Yw'
-    })
+    }),
+    AgmSnazzyInfoWindowModule,
   ],
   providers: [GoogleGeolocationService],
   bootstrap: [AppComponent]
