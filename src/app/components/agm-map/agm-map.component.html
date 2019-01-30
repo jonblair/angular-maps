@@ -1,3 +1,12 @@
+<div class="input-container">
+  <input
+    type="text"
+    class="google-place-input"
+    google-place
+    (onSelect)="setAddress($event)"
+    placeholder="Type to search..">
+</div>
+
 <agm-map [latitude]="lat" [longitude]="lng" [fullscreenControl]="true" (mapClick)="placeMarker($event)">
   <agm-marker *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude">
     <agm-snazzy-info-window [maxWidth]="500" [latitude]="marker.latitude" [longitude]="marker.longitude" [closeWhenOthersOpen]="true">

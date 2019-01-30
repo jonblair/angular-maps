@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { getLocaleTimeFormat } from '@angular/common';
 
-import { GoogleGeolocationService } from '../../services/google-geolocation.service';
+// import { GoogleGeolocationService } from '../../services/google-geolocation.service';
+
+declare var google: any;
+const geocoder = new google.maps.Geocoder();
 
 @Component({
   selector: 'app-agm-map',
@@ -8,11 +12,14 @@ import { GoogleGeolocationService } from '../../services/google-geolocation.serv
   styleUrls: ['./agm-map.component.css']
 })
 export class AgmMapComponent implements OnInit {
-  lat: number;
-  lng: number;
-  markers = [];
+  public lat: number;
+  public lng: number;
+  public markers = [];
+  public addrKeys: string[];
+  public addr: object;
 
-  constructor(private geoLoc: GoogleGeolocationService) { }
+  // private geoLoc: GoogleGeolocationService
+  constructor() { }
 
   ngOnInit() {
     this.getCurrentLocation();
@@ -38,4 +45,22 @@ export class AgmMapComponent implements OnInit {
     this.markers.push({latitude: position.coords.lat, longitude: position.coords.lng});
   }
 
+  setAddress(addrObj) {
+    this.addr = addrObj;
+    this.getLatLong(addrObj);
+    // console.log(this.markers);
+
+    this.addrKeys = Object.keys(addrObj);
+  }
+
+  getLatLong(_addrObj) {
+    geocoder.geocode({ 'address': _addrObj['formatted_address'] }, function (results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+            // this.markers = [{latitude: results[0].geometry.location.lat(), longitude: results[0].geometry.location.lng()}];
+            // tslint:disable-next-line:max-line-length
+            this.markers.push({latitude: results[0].geometry.location.lat(), longitude: results[0].geometry.location.lng()});
+            console.log(this.markers);
+        }
+    });
+  }
 }
